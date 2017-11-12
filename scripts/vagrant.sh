@@ -19,8 +19,8 @@ if [ "$INSTALL_VAGRANT_KEYS" = "true" ] || [ "$INSTALL_VAGRANT_KEYS" = "1" ]; th
 fi
 
 # Create a group and assign the user to it
-dseditgroup -o create "$USERNAME"
-dseditgroup -o edit -a "$USERNAME" "$USERNAME"
+dseditgroup -q -o create "$USERNAME"
+dseditgroup -q -o edit -a "$USERNAME" "$USERNAME"
 
 # Skip iCloud setup for $USERNAME
 sw_vers=$(sw_vers -productVersion)
@@ -30,4 +30,3 @@ defaults write "/Users/$USERNAME/Library/Preferences/com.apple.SetupAssistant" D
 defaults write "/Users/$USERNAME/Library/Preferences/com.apple.SetupAssistant" GestureMovieSeen none
 defaults write "/Users/$USERNAME/Library/Preferences/com.apple.SetupAssistant" LastSeenCloudProductVersion "${sw_vers}"
 defaults write "/Users/$USERNAME/Library/Preferences/com.apple.SetupAssistant" LastSeenBuddyBuildVersion "${sw_build}"      
-
